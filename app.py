@@ -1,5 +1,5 @@
 import streamlit as st
-from openai import OpenAI
+import google.generativeai as genai
 
 st.set_page_config(page_title="AI Resume + Job Match Helper")
 
@@ -18,16 +18,18 @@ if st.button("Analyze"):
 
     else:
 
-        client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+        genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
 
-        system_prompt = """
+        model = genai.GenerativeModel("gemini-1.5-flash")
+
+        prompt = f"""
         You are an AI career assistant.
-        Compare resumes with job descriptions.
+
+        Compare this resume with the job description.
+
         Be honest and simple.
         Do not invent experience.
-        """
 
-        user_prompt = f"""
         Resume:
         {resume}
 
@@ -42,12 +44,8 @@ if st.button("Analyze"):
         5. Interview questions
         """
 
-        response = client.responses.create(
-            model="gpt-4.1-mini",
-            instructions=system_prompt,
-            input=user_prompt
-        )
+        response = model.generate_content(prompt)
 
         st.subheader("Analysis")
 
-        st.write(response.output_text)
+        st.write(response.text)
