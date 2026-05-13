@@ -20,7 +20,7 @@ if st.button("Analyze"):
 
         genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
 
-        model = genai.GenerativeModel("gemini-1.5-flash-8b")
+        model = genai.GenerativeModel("gemini-2.5-flash-lite")
 
         prompt = f"""
         You are an AI career assistant.
