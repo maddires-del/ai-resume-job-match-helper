@@ -32,3 +32,15 @@ Generative AI
 Communication
 Problem Solving
 """
+prompt = f"""
+Required Internship Skills:
+{required_skills}
+
+Resume:
+{resume}
+
+Job Description:
+{job_description}
+"""
+
+response = model.generate_content(prompt)
