@@ -1,20 +1,30 @@
 # Evaluation
 
-Good output should:
-- Identify matching skills correctly
-- Find missing skills
-- Give useful improvement suggestions
-- Generate realistic interview questions
-
-Test Example:
+## Test Case 1
 
 Resume:
-Python, SQL, R, data analysis
+Python SQL GitHub
 
-Job:
-Data Analyst Intern requiring Python, SQL, Excel
+Job Description:
+Data Analyst Intern with Python and SQL
 
 Expected:
-- Medium/high match score
-- Missing Excel identified
-- Helpful suggestions generated
+- Medium match score
+- Identify missing analytics tools
+- Suggest improvements
+
+Actual Output:
+- Match Score: 30/100
+- Correctly identified matching skills:
+  - Python
+  - SQL
+  - GitHub
+- Correctly identified missing skills:
+  - Excel
+  - Power BI
+  - Tableau
+  - Pandas
+- Suggested adding projects and quantified achievements
+
+Observation:
+The model successfully identified important missing technical skills and generated realistic interview questions.
