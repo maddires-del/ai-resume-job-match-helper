@@ -127,3 +127,53 @@ Actual:
 
 Observation:
 This was a useful failure test because the agent showed uncertainty instead of making up details.
+## Test Case 1: Internship Application Assistance
+
+Resume:
+Python, SQL, GitHub, Streamlit, Machine Learning
+
+Job Description:
+Data Science Internship
+
+User Goal:
+I want help applying for this internship.
+
+Actual Output:
+Selected Tool: Analyze Job Fit
+
+Match Score:
+Moderate
+
+Correctly identified:
+- Python
+- SQL
+- Machine Learning
+- GitHub
+- Streamlit
+
+Missing Skills:
+- Pandas
+- NumPy
+- Scikit-learn
+- Statistics
+- Data Visualization
+
+Observation:
+The agent selected the correct tool, explained its reasoning, identified missing skills, and provided actionable recommendations.
+
+## Failure Case
+
+Resume:
+Hardworking student
+
+Job Description:
+AI Research Intern requiring TensorFlow and LLM fine-tuning
+
+User Goal:
+Help me apply for this internship
+
+Actual Output:
+The agent reported insufficient technical information and could not perform a meaningful evaluation.
+
+Observation:
+The system avoided inventing experience and correctly identified missing information.
