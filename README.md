@@ -84,3 +84,17 @@ Write a short professional outreach message.
         st.subheader("Agent Output")
         st.write(response.text)
 
+## Agent Design
+
+This system uses a 2-step agent pipeline:
+
+1. Routing Step:
+   The model selects the most appropriate tool:
+   - Analyze Job Fit
+   - Improve Resume Bullets
+   - Write Recruiter Message
+
+2. Execution Step:
+   The selected tool is executed using a structured prompt.
+
+This design improves flexibility and simulates real-world AI agent behavior.
