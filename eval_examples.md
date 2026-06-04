@@ -60,23 +60,20 @@ This action worked well because it transformed basic resume points into stronger
 
 ## Test Case 3: Recruiter Message Generation
 
-Selected Action:
-Write Recruiter Message
-
 Resume:
-Data Science graduate student with Python, SQL, Machine Learning, Streamlit, and Gemini API project experience.
+Python, SQL, Streamlit project experience
 
 Job Description:
-Hiring Data Science Interns with Python, SQL, machine learning, and communication skills.
+Data Science Intern role requiring communication, Python, SQL, GitHub
 
 Expected:
-The agent should create a short and professional recruiter message.
+Short professional outreach message highlighting fit and interest.
 
 Actual:
-- The agent created a concise recruiter message.
-- It mentioned the internship role and relevant skills.
-- It kept the tone professional and simple.
+Agent generated a concise recruiter message without inventing experience.
 
+Observation:
+Good performance because output stayed realistic and aligned with resume.
 Observation:
 This action is useful because it supports a real application task, not just analysis.
 
