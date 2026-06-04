@@ -28,7 +28,7 @@ Rules:
 - Only use provided resume and job description
 """
 
-# ---------------- MAIN BUTTON ---------------- #
+# ================= MAIN BUTTON ================= #
 
 if st.button("Run Agent"):
 
@@ -39,25 +39,33 @@ if st.button("Run Agent"):
         genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
         model = genai.GenerativeModel("gemini-2.5-flash-lite")
 
-        # =========================
-        # STEP 1: ROUTING (AGENT DECISION)
-        # =========================
+        # ================= ROUTING STEP ================= #
+
         routing_prompt = f"""
-You are an AI agent with 3 tools:
+You are a strict AI routing system.
 
-1. Analyze Job Fit → if user wants skill match analysis
-2. Improve Resume Bullets → if user wants resume rewriting
-3. Write Recruiter Message → if user wants outreach/email
+You MUST choose ONE tool:
 
-IMPORTANT:
-Pick ONLY ONE tool based on intent.
-Return ONLY the tool name.
+TOOLS:
+1. Analyze Job Fit → ONLY if user asks about matching resume to job
+2. Improve Resume Bullets → ONLY if user asks to improve or rewrite resume
+3. Write Recruiter Message → ONLY if user asks to write email/message
+
+RULES:
+- Follow user intent, not default behavior
+- Do NOT always choose Analyze Job Fit
+- Be strict and accurate
+
+USER REQUEST:
+{user_goal}
 
 Resume:
 {resume}
 
 Job Description:
 {job_description}
+
+Return ONLY tool name.
 """
 
         route = model.generate_content(routing_prompt).text.strip()
@@ -65,9 +73,7 @@ Job Description:
         st.subheader("Selected Tool")
         st.write(route)
 
-        # =========================
-        # STEP 2: TOOL EXECUTION
-        # =========================
+        # ================= TOOL EXECUTION ================= #
 
         if "Analyze Job Fit" in route:
 
@@ -113,7 +119,7 @@ Job Description:
 
 TASK: Write Recruiter Message
 
-Create a short professional message to recruiter.
+Create a short professional recruiter outreach message.
 
 Resume:
 {resume}
@@ -123,6 +129,7 @@ Job Description:
 """
 
         else:
+
             prompt = f"""
 {system_prompt}
 
@@ -135,9 +142,7 @@ Job Description:
 {job_description}
 """
 
-        # =========================
-        # STEP 3: FINAL OUTPUT
-        # =========================
+        # ================= FINAL OUTPUT ================= #
 
         response = model.generate_content(prompt)
 
